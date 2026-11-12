@@ -10,7 +10,7 @@ const highlights = [
 
 export default function About() {
   return (
-    <section id="o-nas" className="py-20">
+    <section id="o-nas" className="bg-ink-soft py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="font-display text-6xl sm:text-7xl">
@@ -31,7 +31,7 @@ export default function About() {
               as="li"
               key={title}
               delay={i * 100}
-              className="card-lift flex items-center gap-4 border border-white/10 bg-ink-soft p-5"
+              className="card-lift flex items-center gap-4 border border-white/10 bg-ink p-5"
             >
               <span className={`${color} flex h-12 w-12 shrink-0 -skew-x-12 items-center justify-center text-xl`}>
                 <Icon aria-hidden="true" className="skew-x-12" />

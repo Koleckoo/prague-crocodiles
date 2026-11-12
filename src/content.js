@@ -49,3 +49,28 @@ export const trainings = [
 ];
 
 export const credits = "Jan Illetško";
+
+// Sekce „Jdeš poprvé?" – co má nováček vědět před prvním tréninkem.
+// icon: gift | bag | shield | coins
+export const firstTime = [
+  {
+    icon: "gift",
+    title: "První trénink zdarma",
+    text: "Přijď si to nezávazně vyzkoušet, za první trénink nic neplatíš.",
+  },
+  {
+    icon: "bag",
+    title: "Co s sebou",
+    text: "Sportovní oblečení, sálovou obuv a vodu.",
+  },
+  {
+    icon: "shield",
+    title: "Chrániče na kolena",
+    text: "Hodí se, ale na prvním tréninku je mít nemusíš.",
+  },
+  {
+    icon: "coins",
+    title: "Když tě to chytne",
+    text: "Pokud budeš chtít pokračovat, platí se 2 250 Kč na půl roku.",
+  },
+];

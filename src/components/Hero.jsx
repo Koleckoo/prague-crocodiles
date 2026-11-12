@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useRef } from "react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo-768.webp";
 import { team } from "../content.js";
 
 const HeroBalls = lazy(() => import("./HeroBalls.jsx"));

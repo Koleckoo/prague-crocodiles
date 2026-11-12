@@ -56,7 +56,7 @@ export default function Training() {
           <a href="#kontakt" className="font-semibold text-croc-light underline underline-offset-4 hover:text-white">
             napsat
           </a>
-          .
+          . První trénink máš zdarma.
         </p>
       </div>
     </section>

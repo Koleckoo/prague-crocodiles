@@ -11,7 +11,7 @@ const cards = [
 ];
 
 const field =
-  "mt-1 w-full border border-white/20 bg-ink px-4 py-3 text-white placeholder-white/40 focus:border-croc-light";
+  "mt-1 w-full border border-white/20 bg-ink-soft px-4 py-3 text-white placeholder-white/40 focus:border-croc-light";
 
 export default function Contact() {
   const formRef = useRef(null);
@@ -32,7 +32,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="kontakt" className="bg-ink-soft py-20">
+    <section id="kontakt" className="py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="font-display text-6xl sm:text-7xl">
@@ -48,7 +48,7 @@ export default function Contact() {
                 <a
                   href={href}
                   {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="card-lift flex items-center gap-4 border-l-4 border-croc bg-ink p-5 hover:border-croc-light hover:bg-black"
+                  className="card-lift flex items-center gap-4 border-l-4 border-croc bg-ink-soft p-5 hover:border-croc-light hover:bg-black"
                 >
                   <Icon aria-hidden="true" className="shrink-0 text-3xl text-croc-light" />
                   <span className="min-w-0">

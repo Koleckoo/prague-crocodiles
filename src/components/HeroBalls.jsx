@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import logoUrl from "../assets/logo.png";
+import logoUrl from "../assets/logo-768.webp";
 
 // Ruční rozmístění míčů: x, y v normalizovaných souřadnicích obrazovky (-1..1),
 // z = hloubka, s = velikost.

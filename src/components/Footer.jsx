@@ -1,9 +1,10 @@
 import { FaFacebook, FaInstagram, FaEnvelope } from "react-icons/fa6";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo-96.webp";
 import { team, contact, credits } from "../content.js";
 
 const links = [
   { href: "#trenink", label: "Tréninky" },
+  { href: "#poprve", label: "Jdeš poprvé?" },
   { href: "#o-nas", label: "O nás" },
   { href: "#kontakt", label: "Kontakt" },
 ];
