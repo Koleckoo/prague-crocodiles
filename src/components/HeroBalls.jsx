@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import * as THREE from "three";
+import logoUrl from "../assets/logo.png";
 
 // Ruční rozmístění míčů: x, y v normalizovaných souřadnicích obrazovky (-1..1),
 // z = hloubka, s = velikost.
@@ -29,18 +30,21 @@ const GREY = "#9a9fa5";
 const RED = "#d7161d";
 const BLUE = "#14467f";
 
-// [barvy pruhů, pruhy vodorovně?] pro strany +x, -x, +y, -y, +z, -z
+// [barvy pruhů, pruhy vodorovně?, logo?] pro strany +x, -x, +y, -y, +z, -z
+// Na dvou protilehlých bílých stranách je natištěné logo týmu.
 const FACES = [
-  [[WHITE, RED, WHITE], false],
-  [[WHITE, BLUE, WHITE], false],
-  [[GREY, WHITE, RED], false],
-  [[WHITE, WHITE, GREY], false],
-  [[WHITE, BLUE, GREY], true],
-  [[RED, WHITE, WHITE], true],
+  [[WHITE, RED, WHITE], false, false],
+  [[WHITE, BLUE, WHITE], false, false],
+  [[GREY, WHITE, RED], false, false],
+  [[BLUE, WHITE, GREY], false, false],
+  [[WHITE, WHITE, WHITE], true, true],
+  [[WHITE, WHITE, WHITE], true, true],
 ];
+const LOGO_ASPECT = 3394 / 4760; // šířka / výška loga
+const LOGO_HEIGHT = 0.7; // výška loga vůči straně míče
 
-function makeFaceTexture(colors, horizontal) {
-  const S = 256;
+function makeFaceTexture(colors, horizontal, S = 256) {
+  const k = S / 256;
   const c = document.createElement("canvas");
   c.width = S;
   c.height = S;
@@ -58,18 +62,18 @@ function makeFaceTexture(colors, horizontal) {
   // švy: měkký stín + tenká tmavá linka, mezi pruhy i po obvodu strany
   const seam = (x) => {
     g.fillStyle = "rgba(0,0,0,0.13)";
-    g.fillRect(x - 6, 0, 12, S);
+    g.fillRect(x - 6 * k, 0, 12 * k, S);
     g.fillStyle = "rgba(20,20,20,0.8)";
-    g.fillRect(x - 1.25, 0, 2.5, S);
+    g.fillRect(x - 1.25 * k, 0, 2.5 * k, S);
   };
   seam(w);
   seam(2 * w);
   g.setTransform(1, 0, 0, 1, 0, 0);
   g.strokeStyle = "rgba(0,0,0,0.13)";
-  g.lineWidth = 12;
+  g.lineWidth = 12 * k;
   g.strokeRect(0, 0, S, S);
   g.strokeStyle = "rgba(20,20,20,0.8)";
-  g.lineWidth = 2.5;
+  g.lineWidth = 2.5 * k;
   g.strokeRect(0, 0, S, S);
   // jemné zrno látky
   const img = g.getImageData(0, 0, S, S);
@@ -163,7 +167,9 @@ export default function HeroBalls() {
 
     const geometry = makeBallGeometry();
     const weave = makeWeaveTexture();
-    const textures = FACES.map(([colors, horizontal]) => makeFaceTexture(colors, horizontal));
+    const textures = FACES.map(([colors, horizontal, hasLogo]) =>
+      makeFaceTexture(colors, horizontal, hasLogo ? 512 : 256),
+    );
     const material = textures.map(
       (map) =>
         new THREE.MeshStandardMaterial({
@@ -266,6 +272,24 @@ export default function HeroBalls() {
 
     layout();
 
+    // natisknout logo na bílé strany, jakmile se obrázek načte
+    let disposed = false;
+    const logoImg = new Image();
+    logoImg.onload = () => {
+      if (disposed) return;
+      FACES.forEach(([, , hasLogo], i) => {
+        if (!hasLogo) return;
+        const tex = textures[i];
+        const S = tex.image.width;
+        const h = S * LOGO_HEIGHT;
+        const w = h * LOGO_ASPECT;
+        tex.image.getContext("2d").drawImage(logoImg, (S - w) / 2, (S - h) / 2, w, h);
+        tex.needsUpdate = true;
+      });
+      if (reduced) renderOnce(0);
+    };
+    logoImg.src = logoUrl;
+
     let raf = 0;
     let visible = true;
     const loop = () => {
@@ -309,6 +333,8 @@ export default function HeroBalls() {
     }
 
     return () => {
+      disposed = true;
+      logoImg.onload = null;
       if (raf) cancelAnimationFrame(raf);
       raf = 0;
       ro.disconnect();
