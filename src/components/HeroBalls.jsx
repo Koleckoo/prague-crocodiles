@@ -22,38 +22,107 @@ const MOBILE = [
 const CAM_Z = 10;
 const FOV = 40;
 
-// Šest stočených panelů (bílá / modrá / červená) s černými švy – jako míč v logu.
-function makeTexture() {
+// Látkový dodgeball: volejbalové rozložení panelů – 6 stran, každá ze 3 pruhů,
+// tenké švy, matný textilní povrch. Barvy: bílá, šedá, týmová červená a modrá.
+const WHITE = "#ecebe7";
+const GREY = "#9a9fa5";
+const RED = "#d7161d";
+const BLUE = "#14467f";
+
+// [barvy pruhů, pruhy vodorovně?] pro strany +x, -x, +y, -y, +z, -z
+const FACES = [
+  [[WHITE, RED, WHITE], false],
+  [[WHITE, BLUE, WHITE], false],
+  [[GREY, WHITE, RED], false],
+  [[WHITE, WHITE, GREY], false],
+  [[WHITE, BLUE, GREY], true],
+  [[RED, WHITE, WHITE], true],
+];
+
+function makeFaceTexture(colors, horizontal) {
+  const S = 256;
   const c = document.createElement("canvas");
-  c.width = 1024;
-  c.height = 512;
+  c.width = S;
+  c.height = S;
   const g = c.getContext("2d");
-  const colors = ["#ffffff", "#14467f", "#d7161d"];
-  const w = c.width / 6;
-  const twist = w * 1.5; // o kolik se panel posune mezi póly
-  const H = c.height;
-  for (let i = -2; i < 7; i++) {
-    g.fillStyle = colors[((i % 3) + 3) % 3];
-    g.beginPath();
-    g.moveTo(i * w, 0);
-    g.lineTo((i + 1) * w + 1, 0);
-    g.lineTo((i + 1) * w + twist + 1, H);
-    g.lineTo(i * w + twist, H);
-    g.closePath();
-    g.fill();
+  if (horizontal) {
+    g.translate(S / 2, S / 2);
+    g.rotate(Math.PI / 2);
+    g.translate(-S / 2, -S / 2);
   }
-  g.strokeStyle = "#0a0a0a";
-  g.lineWidth = 16;
-  for (let i = -2; i < 8; i++) {
-    g.beginPath();
-    g.moveTo(i * w, 0);
-    g.lineTo(i * w + twist, H);
-    g.stroke();
+  const w = S / 3;
+  colors.forEach((col, i) => {
+    g.fillStyle = col;
+    g.fillRect(i * w, 0, w + 1, S);
+  });
+  // švy: měkký stín + tenká tmavá linka, mezi pruhy i po obvodu strany
+  const seam = (x) => {
+    g.fillStyle = "rgba(0,0,0,0.13)";
+    g.fillRect(x - 6, 0, 12, S);
+    g.fillStyle = "rgba(20,20,20,0.8)";
+    g.fillRect(x - 1.25, 0, 2.5, S);
+  };
+  seam(w);
+  seam(2 * w);
+  g.setTransform(1, 0, 0, 1, 0, 0);
+  g.strokeStyle = "rgba(0,0,0,0.13)";
+  g.lineWidth = 12;
+  g.strokeRect(0, 0, S, S);
+  g.strokeStyle = "rgba(20,20,20,0.8)";
+  g.lineWidth = 2.5;
+  g.strokeRect(0, 0, S, S);
+  // jemné zrno látky
+  const img = g.getImageData(0, 0, S, S);
+  const d = img.data;
+  for (let i = 0; i < d.length; i += 4) {
+    const n = (Math.random() - 0.5) * 22;
+    d[i] += n;
+    d[i + 1] += n;
+    d[i + 2] += n;
   }
+  g.putImageData(img, 0, 0);
   const tex = new THREE.CanvasTexture(c);
   tex.colorSpace = THREE.SRGBColorSpace;
   tex.anisotropy = 4;
   return tex;
+}
+
+// šum pro bump mapu – vazba látky
+function makeWeaveTexture() {
+  const S = 64;
+  const c = document.createElement("canvas");
+  c.width = S;
+  c.height = S;
+  const g = c.getContext("2d");
+  const img = g.createImageData(S, S);
+  for (let y = 0; y < S; y++) {
+    for (let x = 0; x < S; x++) {
+      const v = 128 + ((x + y) % 2 ? 40 : -40) + (Math.random() - 0.5) * 60;
+      const i = (y * S + x) * 4;
+      img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+      img.data[i + 3] = 255;
+    }
+  }
+  g.putImageData(img, 0, 0);
+  const tex = new THREE.CanvasTexture(c);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  tex.repeat.set(5, 5);
+  return tex;
+}
+
+// krychle nafouknutá do koule – každá strana krychle je jeden díl míče
+function makeBallGeometry() {
+  const geo = new THREE.BoxGeometry(2, 2, 2, 20, 20, 20);
+  const pos = geo.attributes.position;
+  const nor = geo.attributes.normal;
+  const v = new THREE.Vector3();
+  for (let i = 0; i < pos.count; i++) {
+    v.fromBufferAttribute(pos, i).normalize();
+    pos.setXYZ(i, v.x, v.y, v.z);
+    nor.setXYZ(i, v.x, v.y, v.z);
+  }
+  geo.computeBoundingSphere();
+  return geo;
 }
 
 export default function HeroBalls() {
@@ -92,9 +161,19 @@ export default function HeroBalls() {
     rim.position.set(6, 1, -4);
     scene.add(rim);
 
-    const geometry = new THREE.SphereGeometry(1, 48, 32);
-    const texture = makeTexture();
-    const material = new THREE.MeshStandardMaterial({ map: texture, roughness: 0.5, metalness: 0 });
+    const geometry = makeBallGeometry();
+    const weave = makeWeaveTexture();
+    const textures = FACES.map(([colors, horizontal]) => makeFaceTexture(colors, horizontal));
+    const material = textures.map(
+      (map) =>
+        new THREE.MeshStandardMaterial({
+          map,
+          bumpMap: weave,
+          bumpScale: 0.6,
+          roughness: 0.95,
+          metalness: 0,
+        }),
+    );
 
     const group = new THREE.Group();
     scene.add(group);
@@ -237,8 +316,9 @@ export default function HeroBalls() {
       window.removeEventListener("pointermove", onPointer);
       document.removeEventListener("visibilitychange", sync);
       geometry.dispose();
-      material.dispose();
-      texture.dispose();
+      material.forEach((m) => m.dispose());
+      textures.forEach((t) => t.dispose());
+      weave.dispose();
       renderer.dispose();
     };
   }, []);
