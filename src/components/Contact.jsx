@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FaEnvelope, FaFacebook, FaInstagram } from "react-icons/fa6";
 import { contact, emailjs as cfg } from "../content.js";
+import Reveal from "./Reveal.jsx";
 
 const cards = [
   { icon: FaEnvelope, label: contact.email, href: `mailto:${contact.email}`, title: "E-mail" },
@@ -33,19 +34,21 @@ export default function Contact() {
   return (
     <section id="kontakt" className="bg-ink-soft py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="font-display text-5xl sm:text-6xl">
-          Kontakt<span className="text-flag-red">/</span>
-        </h2>
-        <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
+        <Reveal>
+          <h2 className="font-display text-6xl sm:text-7xl">
+            Kontakt<span className="text-flag-red">/</span>
+          </h2>
+          <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
+        </Reveal>
 
         <div className="mt-10 grid gap-10 md:grid-cols-2">
-          <ul className="space-y-4">
+          <Reveal as="ul" className="space-y-4">
             {cards.map(({ icon: Icon, label, href, title, external }) => (
               <li key={title}>
                 <a
                   href={href}
                   {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="flex items-center gap-4 border-l-4 border-croc bg-ink p-5 transition-colors hover:border-croc-light hover:bg-black"
+                  className="card-lift flex items-center gap-4 border-l-4 border-croc bg-ink p-5 hover:border-croc-light hover:bg-black"
                 >
                   <Icon aria-hidden="true" className="shrink-0 text-3xl text-croc-light" />
                   <span className="min-w-0">
@@ -55,9 +58,9 @@ export default function Contact() {
                 </a>
               </li>
             ))}
-          </ul>
+          </Reveal>
 
-          <form ref={formRef} onSubmit={onSubmit} className="space-y-5">
+          <Reveal as="form" delay={100} ref={formRef} onSubmit={onSubmit} className="space-y-5">
             <div>
               <label htmlFor="name" className="font-semibold">Jméno</label>
               <input id="name" name="name" type="text" required autoComplete="name" className={field} />
@@ -97,7 +100,7 @@ export default function Contact() {
                 </p>
               )}
             </div>
-          </form>
+          </Reveal>
         </div>
       </div>
     </section>

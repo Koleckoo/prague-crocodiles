@@ -1,20 +1,24 @@
 import { FaLocationDot, FaClock } from "react-icons/fa6";
 import { trainings } from "../content.js";
+import Reveal from "./Reveal.jsx";
 
 export default function Training() {
   return (
     <section id="trenink" className="relative bg-ink-soft py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <h2 className="font-display text-5xl sm:text-6xl">
-          Tréninky<span className="text-flag-red">/</span>
-        </h2>
-        <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
+        <Reveal>
+          <h2 className="font-display text-6xl sm:text-7xl">
+            Tréninky<span className="text-flag-red">/</span>
+          </h2>
+          <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
+        </Reveal>
 
         <div className="mt-10 grid gap-8">
           {trainings.map((t) => (
-            <article
+            <Reveal
+              as="article"
               key={t.venue}
-              className="grid gap-6 overflow-hidden border-l-4 border-croc bg-ink p-6 md:grid-cols-[2fr_3fr] md:items-center md:gap-10 md:p-10"
+              className="card-lift grid gap-6 overflow-hidden border-l-4 border-croc bg-ink p-6 md:grid-cols-[2fr_3fr] md:items-center md:gap-10 md:p-10"
             >
               <div>
                 <h3 className="font-display text-5xl text-croc-light md:text-7xl">{t.day}</h3>
@@ -43,7 +47,7 @@ export default function Training() {
                 allowFullScreen
                 className="aspect-[16/10] w-full rounded-lg border-0"
               />
-            </article>
+            </Reveal>
           ))}
         </div>
 
