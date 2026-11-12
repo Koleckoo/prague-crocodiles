@@ -1,36 +1,28 @@
-import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
-import { FaEnvelope, FaFacebook, FaInstagram } from "react-icons/fa6";
-import { contact, emailjs as cfg } from "../content.js";
+import { FaEnvelope, FaFacebook, FaInstagram, FaArrowRight } from "react-icons/fa6";
+import { contact } from "../content.js";
 import Reveal from "./Reveal.jsx";
 
 const cards = [
-  { icon: FaEnvelope, label: contact.email, href: `mailto:${contact.email}`, title: "E-mail" },
-  { icon: FaFacebook, label: contact.facebook.label, href: contact.facebook.url, title: "Facebook", external: true },
-  { icon: FaInstagram, label: contact.instagram.label, href: contact.instagram.url, title: "Instagram", external: true },
+  {
+    icon: FaInstagram,
+    title: "Instagram",
+    label: `@${contact.instagram.label}`,
+    href: contact.instagram.url,
+    external: true,
+  },
+  {
+    icon: FaFacebook,
+    title: "Facebook",
+    label: contact.facebook.label,
+    href: contact.facebook.url,
+    external: true,
+  },
+  { icon: FaEnvelope, title: "E-mail", label: contact.email, href: `mailto:${contact.email}` },
 ];
 
-const field =
-  "mt-1 w-full border border-white/20 bg-ink-soft px-4 py-3 text-white placeholder-white/40 focus:border-croc-light";
+const ext = { target: "_blank", rel: "noopener noreferrer" };
 
 export default function Contact() {
-  const formRef = useRef(null);
-  const [status, setStatus] = useState("idle"); // idle | sending | success | error
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    setStatus("sending");
-    try {
-      await emailjs.sendForm(cfg.serviceId, cfg.templateId, formRef.current, {
-        publicKey: cfg.publicKey,
-      });
-      setStatus("success");
-      formRef.current.reset();
-    } catch {
-      setStatus("error");
-    }
-  };
-
   return (
     <section id="kontakt" className="py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -41,64 +33,64 @@ export default function Contact() {
           <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
         </Reveal>
 
-        <div className="mt-10 grid gap-10 md:grid-cols-2">
-          <Reveal as="ul" className="space-y-4">
-            {cards.map(({ icon: Icon, label, href, title, external }) => (
-              <li key={title}>
-                <a
-                  href={href}
-                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="card-lift flex items-center gap-4 border-l-4 border-croc bg-ink-soft p-5 hover:border-croc-light hover:bg-black"
-                >
-                  <Icon aria-hidden="true" className="shrink-0 text-3xl text-croc-light" />
-                  <span className="min-w-0">
-                    <span className="font-display block text-xl">{title}</span>
-                    <span className="block break-words text-white/80">{label}</span>
-                  </span>
-                </a>
-              </li>
-            ))}
+        <div className="mt-10 grid gap-12 md:grid-cols-2">
+          <Reveal>
+            <p className="max-w-md text-lg leading-relaxed text-white/80">
+              Nejrychleji nás zastihneš na Instagramu. Napiš nám zprávu a domluvíme se, kdy
+              přijdeš.
+            </p>
+
+            <a
+              href={contact.instagram.dm}
+              {...ext}
+              className="mt-7 inline-block -skew-x-12 bg-croc px-7 py-4 transition-all duration-200 hover:-translate-y-1 hover:bg-croc-light hover:shadow-[0_10px_28px_-6px_rgba(18,180,132,0.6)]"
+            >
+              <span className="font-display flex skew-x-12 items-center gap-3 text-2xl">
+                <FaInstagram aria-hidden="true" />
+                Napiš nám na Instagram
+                <FaArrowRight aria-hidden="true" className="text-lg" />
+              </span>
+            </a>
+
+            <ul className="mt-10 space-y-3">
+              {cards.map(({ icon: Icon, label, href, title, external }) => (
+                <li key={title}>
+                  <a
+                    href={href}
+                    {...(external ? ext : {})}
+                    className="card-lift flex items-center gap-4 border-l-4 border-croc bg-ink-soft px-5 py-4 hover:border-croc-light hover:bg-black"
+                  >
+                    <Icon aria-hidden="true" className="shrink-0 text-2xl text-croc-light" />
+                    <span className="min-w-0">
+                      <span className="font-display block text-lg leading-tight">{title}</span>
+                      <span className="block break-words text-white/80">{label}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </Reveal>
 
-          <Reveal as="form" delay={100} ref={formRef} onSubmit={onSubmit} className="space-y-5">
-            <div>
-              <label htmlFor="name" className="font-semibold">Jméno</label>
-              <input id="name" name="name" type="text" required autoComplete="name" className={field} />
+          <Reveal delay={100}>
+            <div className="flex items-end justify-between gap-4">
+              <h3 className="font-display text-3xl">Poslední příspěvky</h3>
+              <a
+                href={contact.instagram.url}
+                {...ext}
+                className="font-semibold text-croc-light underline underline-offset-4 hover:text-white"
+              >
+                @{contact.instagram.label}
+              </a>
             </div>
-            <div>
-              <label htmlFor="email" className="font-semibold">E-mail</label>
-              <input id="email" name="email" type="email" required autoComplete="email" className={field} />
-            </div>
-            <div>
-              <label htmlFor="message" className="font-semibold">Zpráva</label>
-              <textarea id="message" name="message" rows="5" required className={field} />
-            </div>
-
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="-skew-x-12 bg-croc px-8 py-3 transition-colors hover:bg-croc-light disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              <span className="font-display block skew-x-12 text-xl">
-                {status === "sending" ? "Odesílám…" : "Odeslat zprávu"}
-              </span>
-            </button>
-
-            <div aria-live="polite">
-              {status === "success" && (
-                <p className="border-l-4 border-croc-light bg-croc/20 p-4">
-                  Díky! Zpráva odešla, brzy se ti ozveme.
-                </p>
-              )}
-              {status === "error" && (
-                <p className="border-l-4 border-flag-red bg-flag-red/20 p-4">
-                  Zprávu se nepodařilo odeslat. Napiš nám prosím přímo na{" "}
-                  <a href={`mailto:${contact.email}`} className="font-semibold underline">
-                    {contact.email}
-                  </a>
-                  .
-                </p>
-              )}
+            {/* oficiální náhled profilu z Instagramu – aktualizuje se sám */}
+            <div className="@container mt-4 overflow-hidden rounded-xl border border-white/10 bg-white shadow-[0_20px_50px_-20px_rgba(18,180,132,0.5)]">
+              <iframe
+                src={contact.instagram.embed}
+                title={`Instagram @${contact.instagram.label} – poslední příspěvky`}
+                loading="lazy"
+                scrolling="no"
+                className="block h-[calc(160px+66.7cqw)] w-full border-0"
+              />
             </div>
           </Reveal>
         </div>

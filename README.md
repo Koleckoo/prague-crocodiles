@@ -11,7 +11,7 @@ npm run dev
 
 ## Obsah
 
-Obsah se upravuje v `src/content.js` (info o týmu, tréninky, kontakty, EmailJS).
+Obsah se upravuje v `src/content.js` (info o týmu, tréninky, kontakty, Instagram).
 
 ## Nasazení
 

@@ -25,14 +25,11 @@ export const contact = {
   instagram: {
     label: "dodgeball_prague",
     url: "https://www.instagram.com/dodgeball_prague/",
+    // otevře rovnou zprávu (DM) na Instagramu
+    dm: "https://ig.me/m/dodgeball_prague",
+    // oficiální náhled profilu – sám ukazuje nejnovější příspěvky
+    embed: "https://www.instagram.com/dodgeball_prague/embed/",
   },
-};
-
-// EmailJS (kontaktní formulář). Veřejná klientská ID ze starého webu.
-export const emailjs = {
-  serviceId: "service_q1c58bc",
-  templateId: "template_ech4xej",
-  publicKey: "9sGDxgSe4Ee6oryGx",
 };
 
 // Tréninky – pro další trénink stačí přidat další položku.
