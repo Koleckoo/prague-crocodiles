@@ -4,7 +4,7 @@ import { FaEnvelope, FaFacebook, FaInstagram } from "react-icons/fa6";
 import { contact, emailjs as cfg } from "../content.js";
 
 const cards = [
-  { icon: FaEnvelope, label: contact.email, href: `mailto:${contact.email}`, title: "Email" },
+  { icon: FaEnvelope, label: contact.email, href: `mailto:${contact.email}`, title: "E-mail" },
   { icon: FaFacebook, label: contact.facebook.label, href: contact.facebook.url, title: "Facebook", external: true },
   { icon: FaInstagram, label: contact.instagram.label, href: contact.instagram.url, title: "Instagram", external: true },
 ];
@@ -31,10 +31,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="bg-ink-soft py-20">
+    <section id="kontakt" className="bg-ink-soft py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <h2 className="font-display text-5xl sm:text-6xl">
-          Contact<span className="text-flag-red">/</span>
+          Kontakt<span className="text-flag-red">/</span>
         </h2>
         <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
 
@@ -59,15 +59,15 @@ export default function Contact() {
 
           <form ref={formRef} onSubmit={onSubmit} className="space-y-5">
             <div>
-              <label htmlFor="name" className="font-semibold">Name</label>
+              <label htmlFor="name" className="font-semibold">Jméno</label>
               <input id="name" name="name" type="text" required autoComplete="name" className={field} />
             </div>
             <div>
-              <label htmlFor="email" className="font-semibold">Email</label>
+              <label htmlFor="email" className="font-semibold">E-mail</label>
               <input id="email" name="email" type="email" required autoComplete="email" className={field} />
             </div>
             <div>
-              <label htmlFor="message" className="font-semibold">Message</label>
+              <label htmlFor="message" className="font-semibold">Zpráva</label>
               <textarea id="message" name="message" rows="5" required className={field} />
             </div>
 
@@ -77,19 +77,19 @@ export default function Contact() {
               className="-skew-x-12 bg-croc px-8 py-3 transition-colors hover:bg-croc-light disabled:cursor-not-allowed disabled:opacity-60"
             >
               <span className="font-display block skew-x-12 text-xl">
-                {status === "sending" ? "Sending…" : "Send message"}
+                {status === "sending" ? "Odesílám…" : "Odeslat zprávu"}
               </span>
             </button>
 
             <div aria-live="polite">
               {status === "success" && (
                 <p className="border-l-4 border-croc-light bg-croc/20 p-4">
-                  Thanks! Your message was sent. We will get back to you soon.
+                  Díky! Zpráva odešla, brzy se ti ozveme.
                 </p>
               )}
               {status === "error" && (
                 <p className="border-l-4 border-flag-red bg-flag-red/20 p-4">
-                  Something went wrong sending your message. Please email us directly at{" "}
+                  Zprávu se nepodařilo odeslat. Napiš nám prosím přímo na{" "}
                   <a href={`mailto:${contact.email}`} className="font-semibold underline">
                     {contact.email}
                   </a>

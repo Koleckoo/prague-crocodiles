@@ -1,18 +1,18 @@
 # Prague Crocodiles
 
-Single-page website for the Prague Crocodiles dodgeball team. Built with Vite, React and Tailwind CSS.
+Web dodgeballového týmu Prague Crocodiles (česky). Vite, React a Tailwind CSS.
 
-## Develop
+## Vývoj
 
 ```
 npm install
 npm run dev
 ```
 
-## Content
+## Obsah
 
-Edit content in `src/content.js` (team info, training sessions, contact details, EmailJS keys).
+Obsah se upravuje v `src/content.js` (info o týmu, tréninky, kontakty, EmailJS).
 
-## Deploy
+## Nasazení
 
-Deploys via Netlify (`netlify.toml`: `npm run build`, publish `dist`).
+Nasazuje se přes Netlify (`netlify.toml`: `npm run build`, publish `dist`).

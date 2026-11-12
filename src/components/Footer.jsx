@@ -3,15 +3,15 @@ import logo from "../assets/logo.png";
 import { team, contact, credits } from "../content.js";
 
 const links = [
-  { href: "#training", label: "Training" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "#trenink", label: "Tréninky" },
+  { href: "#o-nas", label: "O nás" },
+  { href: "#kontakt", label: "Kontakt" },
 ];
 
 const socials = [
   { icon: FaFacebook, href: contact.facebook.url, label: "Facebook", external: true },
   { icon: FaInstagram, href: contact.instagram.url, label: "Instagram", external: true },
-  { icon: FaEnvelope, href: `mailto:${contact.email}`, label: "Email" },
+  { icon: FaEnvelope, href: `mailto:${contact.email}`, label: "E-mail" },
 ];
 
 export default function Footer() {
@@ -25,7 +25,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <a href="#top" className="flex items-center gap-3">
-            <img src={logo} alt="Prague Crocodiles logo" width="34" height="48" className="h-12 w-auto" />
+            <img src={logo} alt="Logo Prague Crocodiles" width="34" height="48" className="h-12 w-auto" />
             <span className="font-display text-2xl">{team.name}</span>
           </a>
           <ul className="flex gap-6">
@@ -53,7 +53,7 @@ export default function Footer() {
           </ul>
         </div>
         <p className="mt-8 text-sm text-white/60">
-          © {new Date().getFullYear()} {team.name} · Site by {credits}
+          © {new Date().getFullYear()} {team.name} · Web vytvořil {credits}
         </p>
       </div>
     </footer>

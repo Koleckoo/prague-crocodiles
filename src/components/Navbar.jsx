@@ -4,9 +4,9 @@ import logo from "../assets/logo.png";
 import { team } from "../content.js";
 
 const links = [
-  { href: "#training", label: "Training" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "#trenink", label: "Tréninky" },
+  { href: "#o-nas", label: "O nás" },
+  { href: "#kontakt", label: "Kontakt" },
 ];
 
 export default function Navbar() {
@@ -30,12 +30,12 @@ export default function Navbar() {
     >
       <nav
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
-        aria-label="Main"
+        aria-label="Hlavní navigace"
       >
         <a href="#top" className="flex items-center gap-3">
           <img
             src={logo}
-            alt={`${team.name} logo`}
+            alt={`Logo ${team.name}`}
             width="34"
             height="48"
             className="h-10 w-auto"
@@ -61,7 +61,7 @@ export default function Navbar() {
           className="p-2 text-2xl md:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? "Zavřít menu" : "Otevřít menu"}
           onClick={() => setOpen((o) => !o)}
         >
           {open ? <FaXmark aria-hidden="true" /> : <FaBars aria-hidden="true" />}

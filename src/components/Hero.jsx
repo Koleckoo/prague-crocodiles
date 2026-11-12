@@ -19,7 +19,7 @@ export default function Hero() {
         <div className="animate-float-in flex justify-center md:order-2">
           <img
             src={logo}
-            alt="Prague Crocodiles logo"
+            alt="Logo Prague Crocodiles"
             width="400"
             height="561"
             fetchPriority="high"
@@ -31,14 +31,14 @@ export default function Hero() {
           <p className="font-display text-lg text-croc-light sm:text-xl">
             {team.sport} · {team.city}
           </p>
-          <h1 className="font-display text-6xl leading-[0.9] sm:text-7xl lg:text-8xl">
-            Dodge.
+          <h1 className="font-display text-6xl leading-[1.08] sm:text-7xl lg:text-8xl">
+            Uhni.
             <br />
-            Duck.
+            Chyť.
             <br />
-            Dive.
+            Hoď.
             <br />
-            <span className="text-croc-light">Dominate.</span>
+            <span className="text-croc-light">Vyhraj.</span>
           </h1>
           <div aria-hidden="true" className="mt-5 flex h-1.5 w-32 -skew-x-12 overflow-hidden">
             <span className="flex-1 bg-white" />
@@ -48,16 +48,16 @@ export default function Hero() {
           <p className="mt-6 max-w-md text-lg text-white/80">{team.tagline}</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="#training"
+              href="#trenink"
               className="-skew-x-12 bg-croc px-7 py-3 transition-colors hover:bg-croc-light"
             >
-              <span className="font-display block skew-x-12 text-xl">Come to training</span>
+              <span className="font-display block skew-x-12 text-xl">Přijď na trénink</span>
             </a>
             <a
-              href="#contact"
+              href="#kontakt"
               className="-skew-x-12 border-2 border-white px-7 py-3 transition-colors hover:bg-white hover:text-ink"
             >
-              <span className="font-display block skew-x-12 text-xl">Contact us</span>
+              <span className="font-display block skew-x-12 text-xl">Napiš nám</span>
             </a>
           </div>
         </div>
