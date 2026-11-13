@@ -91,14 +91,16 @@ export default function Results() {
             delay={medals.length * 100}
             className="card-lift flex items-center gap-5 border border-white/10 bg-ink p-6"
           >
-            <span
+            {/* česká vlajka: bílá nahoře, červená dole, modrý klín od žerdi (poměr 2:3) */}
+            <svg
               aria-hidden="true"
-              className="flex h-12 w-12 shrink-0 -skew-x-12 overflow-hidden"
+              viewBox="0 0 30 20"
+              className="h-10 w-15 shrink-0 rounded-sm shadow-[0_0_0_1px_rgba(255,255,255,0.15)]"
             >
-              <span className="flex-1 bg-white" />
-              <span className="flex-1 bg-flag-blue" />
-              <span className="flex-1 bg-flag-red" />
-            </span>
+              <rect width="30" height="10" fill="#ffffff" />
+              <rect y="10" width="30" height="10" fill="#d7141a" />
+              <path d="M0 0 L15 10 L0 20 Z" fill="#11457e" />
+            </svg>
             <span>
               <span className="font-display block text-2xl leading-tight">Reprezentace</span>
               <span className="block text-white/70">{national}</span>
