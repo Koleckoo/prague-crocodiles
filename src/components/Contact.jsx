@@ -24,7 +24,7 @@ const ext = { target: "_blank", rel: "noopener noreferrer" };
 
 export default function Contact() {
   return (
-    <section id="kontakt" className="bg-ink-soft py-20">
+    <section id="kontakt" className="py-20">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="font-display text-6xl sm:text-7xl">
@@ -58,7 +58,7 @@ export default function Contact() {
                   <a
                     href={href}
                     {...(external ? ext : {})}
-                    className="card-lift flex items-center gap-4 border-l-4 border-croc bg-ink px-5 py-4 hover:border-croc-light hover:bg-black"
+                    className="card-lift flex items-center gap-4 border-l-4 border-croc bg-ink-soft px-5 py-4 hover:border-croc-light hover:bg-black"
                   >
                     <Icon aria-hidden="true" className="shrink-0 text-2xl text-croc-light" />
                     <span className="min-w-0">

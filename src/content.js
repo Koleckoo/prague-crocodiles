@@ -75,6 +75,39 @@ export const council = [
   { name: "Kamila Kobieluszová", role: "Rada týmu", instagram: "kami.kob" },
 ];
 
+// Sekce „Výsledky". Zdroj: Česká dodgeballová liga na Tournify.
+// place = umístění v tabulce, record = výhry-remízy-prohry.
+export const results = {
+  league: {
+    // ve 4. pádě – na webu je to „Hrajeme Českou dodgeballovou ligu…"
+    name: "Českou dodgeballovou ligu",
+    url: "https://czechdodgeball.cz/liga-2/1-ceska-dodgeballova-liga-dospelych/",
+  },
+  national: "Několik našich hráčů a hráček hraje za českou reprezentaci.",
+  current: {
+    season: "2026/27",
+    note: "Průběžně po 1. hracím dni (Mohelnice, 10.–11. 10. 2026)",
+    liveUrl: "https://tournifyapp.com/live/cdbl2627",
+    teams: [
+      { league: "2. liga Mix", team: "Prague Crocodiles B", place: 1, record: "4-0-0" },
+      { league: "1. liga Ženy", team: "Prague Crocodiles", place: 2, record: "3-0-0" },
+      { league: "1. liga Mix", team: "Prague Crocodiles A", place: 2, record: "2-0-1" },
+      { league: "2. liga Muži", team: "Prague Crocodiles", place: 5, record: "0-0-2" },
+    ],
+  },
+  last: {
+    season: "2025/26",
+    note: "Konečné pořadí",
+    liveUrl: "https://tournifyapp.com/live/cdbl2526",
+    teams: [
+      { league: "1. liga Ženy", team: "Prague Crocodiles", place: 2, record: "9-2-1" },
+      { league: "2. liga Mix", team: "Prague Crocodiles B", place: 2, record: "12-0-2" },
+      { league: "1. liga Mix", team: "Prague Crocodiles A", place: 4, record: "7-0-5" },
+      { league: "1. liga Muži", team: "Prague Crocodiles", place: 6, record: "2-1-9" },
+    ],
+  },
+};
+
 export const credits = "Jan Illetško";
 
 // Sekce „Jdeš poprvé?" – co má nováček vědět před prvním tréninkem.

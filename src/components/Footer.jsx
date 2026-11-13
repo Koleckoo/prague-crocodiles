@@ -7,6 +7,7 @@ const links = [
   { href: "#poprve", label: "Jdeš poprvé?" },
   { href: "#dodgeball", label: "Dodgeball" },
   { href: "#o-nas", label: "O nás" },
+  { href: "#vysledky", label: "Výsledky" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 

@@ -1,4 +1,4 @@
-import { FaUserGroup, FaCalendarDays, FaTrophy, FaInstagram } from "react-icons/fa6";
+import { FaUserGroup, FaCalendarDays, FaFlag, FaInstagram } from "react-icons/fa6";
 import { team, council } from "../content.js";
 import Reveal from "./Reveal.jsx";
 
@@ -13,7 +13,7 @@ const initials = (name) =>
 const highlights = [
   { icon: FaUserGroup, title: "Vítáme všechny úrovně", color: "bg-croc" },
   { icon: FaCalendarDays, title: "Každé úterý", color: "bg-flag-blue" },
-  { icon: FaTrophy, title: "Turnaje", color: "bg-flag-red" },
+  { icon: FaFlag, title: "Hráči v reprezentaci", color: "bg-flag-red" },
 ];
 
 export default function About() {

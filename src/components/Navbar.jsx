@@ -8,6 +8,7 @@ const links = [
   { href: "#poprve", label: "Jdeš poprvé?" },
   { href: "#dodgeball", label: "Dodgeball" },
   { href: "#o-nas", label: "O nás" },
+  { href: "#vysledky", label: "Výsledky" },
   { href: "#kontakt", label: "Kontakt" },
 ];
 
@@ -45,7 +46,7 @@ export default function Navbar() {
           <span className="font-display text-xl sm:text-2xl">{team.name}</span>
         </a>
 
-        <ul className="hidden items-center gap-8 lg:flex">
+        <ul className="hidden items-center gap-6 lg:flex xl:gap-8">
           {links.map((l) => (
             <li key={l.href}>
               <a
