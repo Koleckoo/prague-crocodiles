@@ -45,8 +45,8 @@ export const trainings = [
     // Jak se dostat od vchodu školy až k nám (kroky po sobě).
     directions: [
       "Vejdi do školy hlavním vchodem.",
-      "Jdi pořád rovně skrz první budovu.",
-      "Projdi vnitřním průchodem a dej se do dveří vlevo.",
+      "Projdi rovně skrz první budovu, až vyjdeš zase ven.",
+      "Venku hned po levé straně uvidíš dveře, to je vchod k nám.",
     ],
     pickup: "Nechceš bloudit? Napiš nám a vyzvedneme tě před školou.",
   },
