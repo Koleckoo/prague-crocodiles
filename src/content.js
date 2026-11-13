@@ -71,7 +71,7 @@ export const rules = {
 export const council = [
   { name: "Jan Illetško", role: "Vedoucí týmu", instagram: "doncare722" },
   { name: "Tom Reiter", role: "Rada týmu" },
-  { name: "Luci Beránková", role: "Rada týmu" },
+  { name: "Luci Beránková", role: "Rada týmu", instagram: "luciberankova" },
   { name: "Kamile Kobielzsova", role: "Rada týmu" },
 ];
 
