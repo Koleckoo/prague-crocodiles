@@ -67,6 +67,14 @@ export const rules = {
   ],
 };
 
+// Rada týmu. instagram je nepovinný (uživatelské jméno bez @).
+export const council = [
+  { name: "Jan Illetško", role: "Vedoucí týmu", instagram: "doncare722" },
+  { name: "Tom Reiter", role: "Rada týmu" },
+  { name: "Luci Beránková", role: "Rada týmu" },
+  { name: "Kamile Kobielzsova", role: "Rada týmu" },
+];
+
 export const credits = "Jan Illetško";
 
 // Sekce „Jdeš poprvé?" – co má nováček vědět před prvním tréninkem.

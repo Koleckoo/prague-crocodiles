@@ -1,6 +1,14 @@
-import { FaUserGroup, FaCalendarDays, FaTrophy } from "react-icons/fa6";
-import { team } from "../content.js";
+import { FaUserGroup, FaCalendarDays, FaTrophy, FaInstagram } from "react-icons/fa6";
+import { team, council } from "../content.js";
 import Reveal from "./Reveal.jsx";
+
+const tints = ["bg-croc", "bg-flag-blue", "bg-flag-red", "bg-croc"];
+const initials = (name) =>
+  name
+    .split(/\s+/)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 2);
 
 const highlights = [
   { icon: FaUserGroup, title: "Vítáme všechny úrovně", color: "bg-croc" },
@@ -40,6 +48,46 @@ export default function About() {
             </Reveal>
           ))}
         </ul>
+
+        {council.length > 0 && (
+          <>
+            <Reveal className="mt-16">
+              <h3 className="font-display text-4xl sm:text-5xl">Rada týmu</h3>
+              <p className="mt-2 text-white/80">Lidi, na které se můžeš s čímkoli obrátit.</p>
+            </Reveal>
+            <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {council.map(({ name, role, instagram }, i) => (
+                <Reveal
+                  as="li"
+                  key={name}
+                  delay={i * 100}
+                  className="card-lift flex items-center gap-4 border border-white/10 bg-ink-soft p-5"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`${tints[i % tints.length]} flex h-14 w-14 shrink-0 -skew-x-12 items-center justify-center`}
+                  >
+                    <span className="font-display skew-x-12 text-2xl">{initials(name)}</span>
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block font-semibold leading-snug">{name}</span>
+                    <span className="block text-sm text-white/70">{role}</span>
+                    {instagram && (
+                      <a
+                        href={`https://www.instagram.com/${instagram}/`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-1 inline-flex items-center gap-1.5 text-sm font-semibold text-croc-light underline underline-offset-4 hover:text-white"
+                      >
+                        <FaInstagram aria-hidden="true" />@{instagram}
+                      </a>
+                    )}
+                  </span>
+                </Reveal>
+              ))}
+            </ul>
+          </>
+        )}
       </div>
     </section>
   );
