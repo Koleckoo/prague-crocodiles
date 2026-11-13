@@ -8,7 +8,7 @@ export default function Training() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="font-display text-6xl sm:text-7xl">
-            Tréninky<span className="text-flag-red">/</span>
+            Tréninky<span className="text-croc-light">/</span>
           </h2>
           <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
         </Reveal>
@@ -23,11 +23,11 @@ export default function Training() {
               <div>
                 <h3 className="font-display text-5xl text-croc-light md:text-7xl">{t.day}</h3>
                 <p className="mt-3 flex items-center gap-2 text-lg font-semibold md:text-xl">
-                  <FaClock aria-hidden="true" className="text-flag-red" />
+                  <FaClock aria-hidden="true" className="text-croc-light" />
                   {t.time}
                 </p>
                 <p className="mt-1 flex items-center gap-2 text-white/80 md:text-lg">
-                  <FaLocationDot aria-hidden="true" className="shrink-0 text-flag-red" />
+                  <FaLocationDot aria-hidden="true" className="shrink-0 text-croc-light" />
                   {t.venue}
                 </p>
                 <a

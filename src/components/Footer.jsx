@@ -20,11 +20,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="bg-ink">
-      <div aria-hidden="true" className="flex h-1.5">
-        <span className="flex-1 bg-white" />
-        <span className="flex-1 bg-flag-blue" />
-        <span className="flex-1 bg-flag-red" />
-      </div>
+      <div aria-hidden="true" className="h-1.5 bg-croc" />
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
           <a href="#top" className="flex items-center gap-3">

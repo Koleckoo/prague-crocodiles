@@ -1,7 +1,7 @@
 import { rules } from "../content.js";
 import Reveal from "./Reveal.jsx";
 
-const accents = ["text-flag-red", "text-croc-light", "text-white", "text-croc-light"];
+const accents = ["text-croc-light", "text-white", "text-croc-light", "text-white"];
 
 export default function Rules() {
   return (
@@ -9,7 +9,7 @@ export default function Rules() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="font-display text-6xl sm:text-7xl">
-            Co je dodgeball?<span className="text-flag-red">/</span>
+            Co je dodgeball?<span className="text-croc-light">/</span>
           </h2>
           <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
         </Reveal>

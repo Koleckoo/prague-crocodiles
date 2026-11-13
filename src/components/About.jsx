@@ -2,7 +2,7 @@ import { FaUserGroup, FaCalendarDays, FaFlag, FaInstagram } from "react-icons/fa
 import { team, council } from "../content.js";
 import Reveal from "./Reveal.jsx";
 
-const tints = ["bg-croc", "bg-flag-blue", "bg-flag-red", "bg-croc"];
+const tints = ["bg-croc", "bg-croc-dark", "bg-croc", "bg-croc-dark"];
 const initials = (name) =>
   name
     .split(/\s+/)
@@ -12,8 +12,8 @@ const initials = (name) =>
 
 const highlights = [
   { icon: FaUserGroup, title: "Vítáme všechny úrovně", color: "bg-croc" },
-  { icon: FaCalendarDays, title: "Každé úterý", color: "bg-flag-blue" },
-  { icon: FaFlag, title: "Hráči v reprezentaci", color: "bg-flag-red" },
+  { icon: FaCalendarDays, title: "Každé úterý", color: "bg-croc-dark" },
+  { icon: FaFlag, title: "Hráči v reprezentaci", color: "bg-croc" },
 ];
 
 export default function About() {
@@ -22,7 +22,7 @@ export default function About() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="font-display text-6xl sm:text-7xl">
-            Kdo jsme<span className="text-flag-red">/</span>
+            Kdo jsme<span className="text-croc-light">/</span>
           </h2>
           <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
         </Reveal>

@@ -3,7 +3,7 @@ import { firstTime } from "../content.js";
 import Reveal from "./Reveal.jsx";
 
 const icons = { gift: FaGift, bag: FaBagShopping, shield: FaShieldHalved, coins: FaCoins };
-const tints = ["bg-croc", "bg-flag-blue", "bg-flag-red", "bg-croc"];
+const tints = ["bg-croc", "bg-croc-dark", "bg-croc", "bg-croc-dark"];
 
 export default function FirstTime() {
   return (
@@ -11,7 +11,7 @@ export default function FirstTime() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="font-display text-6xl sm:text-7xl">
-            Jdeš poprvé?<span className="text-flag-red">/</span>
+            Jdeš poprvé?<span className="text-croc-light">/</span>
           </h2>
           <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
         </Reveal>

@@ -61,9 +61,9 @@ export default function Hero() {
       {/* decorative stripes */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <div className="absolute -right-24 top-0 h-full w-40 -skew-x-12 bg-croc/20 sm:w-56" />
-        <div className="absolute right-24 top-0 h-full w-10 -skew-x-12 bg-flag-red/40 sm:right-40" />
-        <div className="absolute right-40 top-0 h-full w-6 -skew-x-12 bg-flag-blue/50 sm:right-60" />
-        <div className="absolute -left-32 bottom-0 h-1/2 w-64 -skew-x-12 bg-flag-blue/15" />
+        <div className="absolute right-24 top-0 h-full w-10 -skew-x-12 bg-croc-light/25 sm:right-40" />
+        <div className="absolute right-40 top-0 h-full w-6 -skew-x-12 bg-croc-dark/60 sm:right-60" />
+        <div className="absolute -left-32 bottom-0 h-1/2 w-64 -skew-x-12 bg-croc/10" />
       </div>
 
       <Suspense fallback={null}>
@@ -99,11 +99,7 @@ export default function Hero() {
             <br />
             <span className="text-croc-light">Vyhraj.</span>
           </h1>
-          <div aria-hidden="true" className="mt-5 flex h-1.5 w-32 -skew-x-12 overflow-hidden">
-            <span className="flex-1 bg-white" />
-            <span className="flex-1 bg-flag-blue" />
-            <span className="flex-1 bg-flag-red" />
-          </div>
+          <div aria-hidden="true" className="mt-5 h-1.5 w-32 -skew-x-12 bg-croc" />
           <p className="mt-6 max-w-md text-lg text-white/80">{team.tagline}</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <a

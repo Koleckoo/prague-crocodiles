@@ -56,7 +56,7 @@ export default function Results() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <Reveal>
           <h2 className="font-display text-6xl sm:text-7xl">
-            Výsledky<span className="text-flag-red">/</span>
+            Výsledky<span className="text-croc-light">/</span>
           </h2>
           <div className="mt-3 h-1.5 w-24 -skew-x-12 bg-croc" aria-hidden="true" />
         </Reveal>
