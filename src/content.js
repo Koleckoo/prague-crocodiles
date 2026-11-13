@@ -48,7 +48,7 @@ export const trainings = [
     directions: [
       "Vejdi do školy hlavním vchodem.",
       "Projdi rovně skrz první budovu, až vyjdeš zase ven.",
-      "Venku hned po levé straně uvidíš dveře, to je vchod k nám.",
+      "Venku hned po pravé straně uvidíš dveře, to je vchod k nám.",
     ],
     pickup: "Nechceš bloudit? Napiš nám a vyzvedneme tě před školou.",
   },
