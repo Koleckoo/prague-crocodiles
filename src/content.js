@@ -36,6 +36,8 @@ export const contact = {
 export const trainings = [
   {
     venue: "Střední odborná škola Jarov",
+    // adresa pro Google (strukturovaná data)
+    address: { street: "Učňovská 100/1", postalCode: "190 00", city: "Praha 9" },
     day: "Úterý",
     time: "18:30 – 21:00",
     mapEmbed:

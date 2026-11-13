@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import logo from "../assets/logo-768.webp";
 import { team } from "../content.js";
 
@@ -8,6 +8,8 @@ const MAX_TILT = 10;
 
 export default function Hero() {
   const tiltRef = useRef(null);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const el = tiltRef.current;
@@ -66,9 +68,12 @@ export default function Hero() {
         <div className="absolute -left-32 bottom-0 h-1/2 w-64 -skew-x-12 bg-croc/10" />
       </div>
 
-      <Suspense fallback={null}>
-        <HeroBalls />
-      </Suspense>
+      {/* 3D míče jen v prohlížeči – v předrenderovaném HTML nejsou */}
+      {mounted && (
+        <Suspense fallback={null}>
+          <HeroBalls />
+        </Suspense>
+      )}
 
       <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-8 px-4 sm:px-6 md:grid-cols-2">
         <div className="animate-float-in flex justify-center md:order-2">

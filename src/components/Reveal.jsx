@@ -5,11 +5,18 @@ const Reveal = forwardRef(function Reveal(
   forwardedRef,
 ) {
   const ref = useRef(null);
-  const [shown, setShown] = useState(
-    () =>
+  // Vždy začínáme skryté, aby předrenderované HTML sedělo s prvním renderem v prohlížeči.
+  const [shown, setShown] = useState(false);
+
+  // Bez IntersectionObserveru nebo při omezeném pohybu ukážeme obsah hned.
+  useEffect(() => {
+    if (
       !("IntersectionObserver" in window) ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      setShown(true);
+    }
+  }, []);
 
   // po dokončení přechodu zrušíme zpoždění a zkrátíme přechod, ať hover reaguje hned
   const [done, setDone] = useState(false);
@@ -26,7 +33,7 @@ const Reveal = forwardRef(function Reveal(
   };
 
   useEffect(() => {
-    if (shown) return undefined;
+    if (shown || !("IntersectionObserver" in window)) return undefined;
     const el = ref.current;
     if (!el) return undefined;
     const io = new IntersectionObserver(
