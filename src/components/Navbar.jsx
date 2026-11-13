@@ -6,6 +6,7 @@ import { team } from "../content.js";
 const links = [
   { href: "#trenink", label: "Tréninky" },
   { href: "#poprve", label: "Jdeš poprvé?" },
+  { href: "#dodgeball", label: "Dodgeball" },
   { href: "#o-nas", label: "O nás" },
   { href: "#kontakt", label: "Kontakt" },
 ];
@@ -44,7 +45,7 @@ export default function Navbar() {
           <span className="font-display text-xl sm:text-2xl">{team.name}</span>
         </a>
 
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
             <li key={l.href}>
               <a
@@ -59,7 +60,7 @@ export default function Navbar() {
 
         <button
           type="button"
-          className="p-2 text-2xl md:hidden"
+          className="p-2 text-2xl lg:hidden"
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Zavřít menu" : "Otevřít menu"}
@@ -70,7 +71,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <ul id="mobile-menu" className="border-t border-white/10 px-4 pb-4 md:hidden">
+        <ul id="mobile-menu" className="border-t border-white/10 px-4 pb-4 lg:hidden">
           {links.map((l) => (
             <li key={l.href}>
               <a

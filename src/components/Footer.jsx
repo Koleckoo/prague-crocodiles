@@ -5,6 +5,7 @@ import { team, contact, credits } from "../content.js";
 const links = [
   { href: "#trenink", label: "Tréninky" },
   { href: "#poprve", label: "Jdeš poprvé?" },
+  { href: "#dodgeball", label: "Dodgeball" },
   { href: "#o-nas", label: "O nás" },
   { href: "#kontakt", label: "Kontakt" },
 ];
@@ -29,7 +30,7 @@ export default function Footer() {
             <img src={logo} alt="Logo Prague Crocodiles" width="34" height="48" className="h-12 w-auto" />
             <span className="font-display text-2xl">{team.name}</span>
           </a>
-          <ul className="flex gap-6">
+          <ul className="flex flex-wrap gap-x-6 gap-y-2">
             {links.map((l) => (
               <li key={l.href}>
                 <a href={l.href} className="font-display text-lg text-white/80 hover:text-croc-light">

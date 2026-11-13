@@ -1,5 +1,5 @@
-import { FaLocationDot, FaClock } from "react-icons/fa6";
-import { trainings } from "../content.js";
+import { FaLocationDot, FaClock, FaInstagram } from "react-icons/fa6";
+import { trainings, contact } from "../content.js";
 import Reveal from "./Reveal.jsx";
 
 export default function Training() {
@@ -47,6 +47,39 @@ export default function Training() {
                 allowFullScreen
                 className="aspect-[16/10] w-full rounded-lg border-0"
               />
+
+              {t.directions?.length > 0 && (
+                <div className="border-t border-white/10 pt-6 md:col-span-2 md:pt-8">
+                  <h4 className="font-display text-3xl">Jak nás najdeš</h4>
+                  <ol className="mt-5 grid gap-4 md:grid-cols-3 md:gap-6">
+                    {t.directions.map((step, i) => (
+                      <li key={step} className="flex items-start gap-4">
+                        <span
+                          aria-hidden="true"
+                          className="flex h-10 w-10 shrink-0 -skew-x-12 items-center justify-center bg-croc"
+                        >
+                          <span className="font-display skew-x-12 text-xl">{i + 1}</span>
+                        </span>
+                        <span className="pt-1.5 text-white/90">{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                  {t.pickup && (
+                    <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-white/80">
+                      {t.pickup}
+                      <a
+                        href={contact.instagram.dm}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 font-semibold text-croc-light underline underline-offset-4 hover:text-white"
+                      >
+                        <FaInstagram aria-hidden="true" />
+                        Napsat na Instagram
+                      </a>
+                    </p>
+                  )}
+                </div>
+              )}
             </Reveal>
           ))}
         </div>
