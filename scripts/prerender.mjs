@@ -27,10 +27,6 @@ if (!html.includes(marker)) throw new Error("prerender: empty #root not found in
 html = html.replace(marker, `<div id="root">${render()}</div>`);
 
 // --- 2. strukturovaná data ---------------------------------------------------
-const DAYS = {
-  pondělí: "Monday", úterý: "Tuesday", středa: "Wednesday", čtvrtek: "Thursday",
-  pátek: "Friday", sobota: "Saturday", neděle: "Sunday",
-};
 const logoFile = readdirSync(join(dist, "assets")).find((f) => /^logo-768-.*\.webp$/.test(f));
 
 const places = trainings.map((t) => ({
@@ -64,25 +60,8 @@ const jsonLd = {
     name: "Česká asociace dodgeballu",
     url: "https://czechdodgeball.cz/",
   },
-  event: trainings.map((t, i) => {
-    const [start, end] = t.time.split(/\s*[–-]\s*/);
-    const day = DAYS[t.day.toLowerCase()];
-    return {
-      "@type": "Event",
-      name: `Trénink dodgeballu – ${team.name}`,
-      eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
-      location: places[i],
-      organizer: { "@type": "SportsTeam", name: team.name, url: `${siteUrl}/` },
-      eventSchedule: {
-        "@type": "Schedule",
-        repeatFrequency: "P1W",
-        ...(day && { byDay: `https://schema.org/${day}` }),
-        startTime: start,
-        ...(end && { endTime: end }),
-        scheduleTimezone: "Europe/Prague",
-      },
-    };
-  }),
+  // Tréninky záměrně nejsou jako Event: Google u událostí vyžaduje konkrétní
+  // datum (startDate) a pravidelný trénink hlásí jako chybu.
 };
 const ldScript = `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>`;
 html = html.replace("</head>", `    ${ldScript}\n  </head>`);
